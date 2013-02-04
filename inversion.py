@@ -14,7 +14,8 @@ NUM_TEST_CASES = 1
 
 def main():
     sys.setrecursionlimit(100000)
-    resource.setrlimit(resource.RLIMIT_STACK, (2**29, -1))
+    soft, hard = resource.getrlimit(resource.RLIMIT_STACK)
+    resource.setrlimit(resource.RLIMIT_STACK, (hard, hard))
     input = False
 
     parser = argparse.ArgumentParser();
