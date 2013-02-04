@@ -8,11 +8,13 @@ import argparse
 import string
 import time
 import sys
+import resource
 
 NUM_TEST_CASES = 1
 
 def main():
-    sys.setrecursionlimit(50000)
+    sys.setrecursionlimit(100000)
+    resource.setrlimit(resource.RLIMIT_STACK, (2**29, -1))
     input = False
 
     parser = argparse.ArgumentParser();
