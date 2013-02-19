@@ -35,7 +35,9 @@ def main():
             for line in input:
                 line = string.replace(line, '\n', '')
                 nums = string.split(line, ",")
-                 
+                nums = map(int, nums)
+
+
                 if(not(nums[0])):
                     continue
                 
@@ -77,7 +79,7 @@ def brute_force(nums):
     for x in range(0, len(nums)):
         for y in range(x, len(nums)):
             #print(int(nums[x]), int(nums[y]))
-            if int(nums[x]) > int(nums[y]):
+            if nums[x] > nums[y]:
                 count += 1
     
     return count   
@@ -93,11 +95,11 @@ def divide(nums):
         
         for x in range(0, len(nums)/2):
             for y in range(len(nums)/2, len(nums)):
-                if int(nums[x]) > int(nums[y]):
+                if nums[x] > nums[y]:
                     count += 1
 
     elif( len(nums) > 1):
-        if( int(nums[0]) > int(nums[1]) ):
+        if( nums[0] > nums[1] ):
             count += 1
     
     return count
@@ -128,10 +130,10 @@ def merge(count_arr1, count_arr2):
     if( not(arr2) ):
         return (0, arr1)
 
-    if( int(arr1[0]) <= int(arr2[0]) ):
+    if( arr1[0] <= arr2[0] ):
         (new_count, merged_arrays) = merge( (0, arr1[1:]), (0, arr2))
         return (new_count+count, [arr1[0]]+merged_arrays )
-    elif( int(arr1[0]) > int(arr2[0]) ):
+    elif( arr1[0] > arr2[0] ):
         (new_count, merged_arrays) = merge((0, arr1), (0, arr2[1:]))
         return (new_count+count+len(arr1), [arr2[0]]+merged_arrays )
 
